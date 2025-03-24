@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="title">Hola mundo</h1>
+    <div class="container">
+        <ul id="lista">
+            <li id="item1"> item-1 </li>
+            <li id="item2"> item-2 </li>
+            <li id="item3"> item-3 </li>
+        </ul>
+    </div>
+    <footer id="footer">
+        Copy
+    </footer>
+
+    <script>
+        const item2 = document.querySelector("#item2")
+        console.log(item2.parentElement) // padre
+
+        const lista = document.querySelector("#lista");
+        console.log(lista.children)
+        console.log(lista.firstElementChild)
+        console.log(lista.lastElementChild)
+        const listaItems = document.querySelectorAll("#lista li");
+        const listaItemsArr = [...listaItems];
+        console.log(listaItemsArr[0]);
+
+        const container = document.querySelector(".container");
+        console.log(container.previousElementSibling)
+        console.log(container.nextElementSibling)
+
+        const li = document.createElement("li");
+        li.textContent = "Elemento nuevo";
+        lista.appendChild(li);
+        const h2 = "<h2> Hola </h2>";
+        container.innerHTML += h2;
+
+        console.log(container.getAttribute("class"))
+    </script>
+</body>
+</html>

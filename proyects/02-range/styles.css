@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container {
+    /* border: 1px solid red; */
+    width: 150px;
+    height: 200px;
+    padding: 1em .5em;
+
+    div > p{
+        text-align: center;
+    }
+}
