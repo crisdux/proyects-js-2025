@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="quote-container">
+            <p id="quote">"La suerte es donde confluyen la preparación y la oportunidad"</p>
+            <p id="author">Seneca</p>
+            <button id="button-random"> Random </button>
+        </div>
+    </div>
+
+
+    <script type="module">
+        import { quotes } from "./quotes.js";
+        const quote = document.querySelector("#quote");
+        const author = document.querySelector("#author");
+        const button = document.querySelector("#button-random");
+
+        
+        const randomIndex = (max, min) => {
+            console.log(Math.floor(Math.random() * (max-min)))
+            return Math.floor(Math.random() * (max-min))
+        }
+
+        button.addEventListener("click", () => {
+            quote.innerText = `"${quotes[randomIndex(quotes.length, 0)].quote}"`
+            author.innerText = `- ${quotes[randomIndex(quotes.length,0)].author}`
+        })
+        
+        
+
+    </script>
+</body>
+</html>
