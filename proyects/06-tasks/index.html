@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .checked{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tareas</h1>
+    <form id="formulario" action="">
+        <input type="text" name="tarea" id="input-tarea" placeholder="Tarea">
+        <button type="submit" id="button-submit" >Agregar</button>
+    </form>
+    <ul id="listado">
+
+    </ul>
+
+    
+    <script>
+        const formulario = document.querySelector("#formulario");
+        const inputTarea = document.querySelector("#input-tarea");
+        const listado = document.querySelector("#listado");
+        const button = document.querySelector("#button-submit")
+
+        function crearTarea() {
+            if(inputTarea.value !== ""){
+                const li = document.createElement("li");
+                li.textContent = inputTarea.value;
+                const buttonEliminar = document.createElement("button");
+                buttonEliminar.textContent = "Eliminar";
+                buttonEliminar.addEventListener("click", () => {
+                    listado.removeChild(li);
+                })
+                const hecho = document.createElement("button");
+                hecho.textContent = "Hecho";
+                hecho.addEventListener("click", () => {
+                    li.classList.toggle("checked");
+                })
+                li.appendChild(hecho)
+                li.appendChild(buttonEliminar);
+                listado.appendChild(li);
+                inputTarea.value = "";
+            }else{
+                alert("Tarea vacia")
+            }
+        }
+
+        formulario.addEventListener("submit", (e) => {
+            e.preventDefault();
+            crearTarea();
+        })
+
+    </script>
+</body>
+</html>
