@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <div id="cronometro">
+            00:00:00
+        </div>
+        <div class="container-buttons">
+            <button class="button" id="button-play">Play</button>
+            <button class="button" id="button-reiniciar">Reiniciar</button>
+        </div>
+    </main>
+
+    <script>
+        const conometro = document.querySelector("#cronometro");
+        const buttonPlay = document.querySelector("#button-play");
+        const buttonReiniciar = document.querySelector("#button-reiniciar");
+
+        let segundos = 0;
+        let minutos = 0;
+        let horas = 0;
+
+        let estadoCronometro = "pausa"; // || play
+        let intervaloTiempo;
+
+        const playCronometro = () => {
+            segundos++;
+            if(segundos / 60 === 1){
+                minutos++;
+                segundos = 0;
+
+                if(minutos / 60 === 1){
+                    horas++;
+                    minutos = 0;
+                }
+            }
+
+            let segFormato = formatoCronometro(segundos);
+            let minFormato = formatoCronometro(minutos);
+            let horasFormato = formatoCronometro(horas);
+            conometro.textContent = `${horasFormato}:${minFormato}:${segFormato}`;
+
+        }
+
+        const formatoCronometro = (tiempo) => {
+            return tiempo < 10 ? `0${tiempo}` : tiempo;
+        }
+
+    
+        buttonPlay.addEventListener("click", () => {
+            if(estadoCronometro === "pausa"){
+                intervaloTiempo = window.setInterval(playCronometro, 1000);
+                buttonPlay.innerHTML = "Pausa";
+                estadoCronometro = "play";
+            }else{
+                window.clearInterval(intervaloTiempo);
+                buttonPlay.innerHTML = "Play";
+                estadoCronometro = "pausa";
+            }
+        })
+
+            buttonReiniciar.addEventListener("click", () => {
+                segundos = 0;
+                minutos = 0;
+                horas = 0;
+                conometro.textContent = "00:00:00";
+                window.clearInterval(intervaloTiempo);
+                buttonPlay.innerHTML = "Play";
+                estadoCronometro = "pausa";
+                
+            })
+
+
+    </script>
+</body>
+</html>
